@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  box-sizing: border-box;
+  --primary:#616060;
+  --secondary: #ff7c00;
+  --text-primary: #616060;
+}
+nav > ul > li{
+  font-weight: 500;
+  font-size:1.3rem;
+  color: var(--primary);
+  font-family: 'Roboto';
+}
+.active{
+  color:var(--secondary);
+}
+nav > ul > li:hover{
+  color:var(--secondary);
+}
+.btn-primary{
+  border:2px solid var(--secondary);
+  transition: all 0.3s ease-out;
+}
+.btn-primary:hover{
+  color:var(--secondary);
+  background-color: transparent; 
+}
+.product-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.banner{
+  background-image: url('/images/banner.jpg');
+  background-position: center;
+}
+.banner-text{
+  text-shadow: 1px 1px black;
+}
+footer h3{
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+footer ul > li > a{
+  opacity: 50%;
+}
+
+footer ul > li > a:hover{
+  color:var(--secondary);
+  opacity: 100%;
+}
+#category  option{
+  background-color: blue;
+}
