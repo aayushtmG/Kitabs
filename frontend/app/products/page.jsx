@@ -2,6 +2,7 @@
 import ProductListings from "@/components/ProductListing"
 import Pagination from '@/components/Pagination'
 import { useEffect, useState } from "react"
+import MainLayout from "layouts/MainLayout"
 
 const categoryList=[
   'All Products',
@@ -57,7 +58,8 @@ export default function Page() {
     fetchProducts();
   },[])
 
-  return <div className="pt-24 w-4/5 mx-auto">
+  return <MainLayout>
+        <div className="pt-24 w-4/5 mx-auto">
        <h1 className='text-xl xl:text-4xl font-bold text-text-primary text-center mb-10'>All Products</h1>
        {/* filters */}
        <div className="max-w-6xl mx-auto flex gap-2 justify-between">
@@ -117,4 +119,5 @@ export default function Page() {
         <Pagination  totalProducts={products.length} productsPerPage={productsPerPage} paginate={paginate} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
         }
   </div>
+    </MainLayout>
 }

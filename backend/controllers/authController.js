@@ -3,11 +3,10 @@ import User from '../models/userModel.js'
 
 export const signIn = catchAsync(async (req,res,next)=>{
   const {username,password} = req.body;
-
   const user = await  User.findOne({username,password});
 
   if(!user){
-   return next( new Error('Couldnt find the user'));
+   return next(new Error('Couldnt find the user'));
   }
 
   res.status(200).json({
@@ -18,6 +17,7 @@ export const signIn = catchAsync(async (req,res,next)=>{
 
 
 export const  signUp = catchAsync(async (req,res)=>{
+
   const newUser = await User.create({
     fullName: req.body.fullName,
     username: req.body.username,

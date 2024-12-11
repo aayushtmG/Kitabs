@@ -1,7 +1,9 @@
 import Map from "@/components/Map"
 import ContactForm from "@/components/ContactForm"
+import MainLayout from "layouts/MainLayout";
 const page = () => {
   return (
+        <MainLayout>
     <div className="w-full">
       {/* Pink Header Section */}
       <div className="bg-primary text-center h-[300px] pt-24 ">
@@ -18,6 +20,7 @@ const page = () => {
         <ContactForm/>
       </div>
     </div>
+    </MainLayout>
   );
 };
 

@@ -4,6 +4,7 @@ import Image from "next/image"
 import ProductCard from "../components/ProductCard"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import MainLayout from '../layouts/MainLayout.jsx'
 
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
     fetchProducts();
   },[])
   return (
-    <>
+    <MainLayout>
     <section className='h-[920px] bg-primary pt-20 flex justify-center items-center'>
       <div className='w-4/5 flex text-text-primary justify-between flex-col-reverse sm:flex-row '>
         <div className='basis-1/2 flex justify-center flex-col space-y-4'>
@@ -83,6 +84,6 @@ export default function Home() {
             }
           </div>
     </section>
-    </>
+    </MainLayout>
   )
 }
