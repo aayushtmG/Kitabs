@@ -1204,15 +1204,15 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
+.text-white\/80 {
+  color: rgb(255 255 255 / 0.8);
+}
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 .opacity-25 {
   opacity: 0.25;
-}
-.opacity-50 {
-  opacity: 0.5;
 }
 .opacity-75 {
   opacity: 0.75;
@@ -1326,7 +1326,7 @@ nav > ul > li:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .banner{
-  background-image: url('/images/banner.jpg');
+  background-image: url('/images/Book-Banner.jpg');
   background-position: center;
 }
 .banner-text{
@@ -1338,11 +1338,9 @@ footer h3{
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
-footer ul > li > a{
-}
 
 footer ul > li > a:hover{
-  color:var(--secondary);
+  color:white;
   opacity: 100%;
 }
 #category  option{
@@ -1380,10 +1378,6 @@ nav > ul > li{
   background-color: rgb(0 116 217 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-secondary\/80:hover {
-  background-color: rgb(0 116 217 / 0.8);
-}
-
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -1391,6 +1385,11 @@ nav > ul > li{
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:text-primary:hover {
+  --tw-text-opacity: 1;
+  color: rgb(28 38 51 / var(--tw-text-opacity, 1));
 }
 
 .hover\:text-secondary:hover {

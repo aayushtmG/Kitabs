@@ -38,7 +38,7 @@ nav > ul > li:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .banner{
-  background-image: url('/images/banner.jpg');
+  background-image: url('/images/Book-Banner.jpg');
   background-position: center;
 }
 .banner-text{
@@ -50,11 +50,9 @@ footer h3{
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
-footer ul > li > a{
-}
 
 footer ul > li > a:hover{
-  color:var(--secondary);
+  color:white;
   opacity: 100%;
 }
 #category  option{
