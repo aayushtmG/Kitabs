@@ -5,13 +5,13 @@
 
 *{
   box-sizing: border-box;
-  --primary:#616060;
-  --secondary: #ff7c00;
+  --primary: #1C2633;
+  --secondary: #0074D9;
   --text-primary: #616060;
 }
 nav > ul > li{
   font-weight: 500;
-  font-size:1.3rem;
+  font-size:1.2rem;
   color: var(--primary);
   font-family: 'Roboto';
 }
@@ -19,14 +19,14 @@ nav > ul > li{
   color:var(--secondary);
 }
 nav > ul > li:hover{
-  color:var(--secondary);
+  color:#0074D9;
 }
 .btn-primary{
-  border:2px solid var(--secondary);
+  border:2px solid #0074D9;
   transition: all 0.3s ease-out;
 }
 .btn-primary:hover{
-  color:var(--secondary);
+  color:#0074D9;
   background-color: transparent; 
 }
 .product-card {
@@ -45,13 +45,12 @@ nav > ul > li:hover{
   text-shadow: 1px 1px black;
 }
 footer h3{
-  color: var(--text-primary);
+  color: white;
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
 footer ul > li > a{
-  opacity: 50%;
 }
 
 footer ul > li > a:hover{
@@ -60,4 +59,10 @@ footer ul > li > a:hover{
 }
 #category  option{
   background-color: blue;
+}
+
+@media (min-width: 1900px) {
+nav > ul > li{
+  font-size:1.6rem;
+}
 }

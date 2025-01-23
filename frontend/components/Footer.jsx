@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="mt-20 bg-primary pt-10">
       {/* upper section */}
-      <div className="flex flex-col items-center justify-center lg:justify-evenly lg:w-4/5 mx-auto gap-4 md:flex-row">
+      <div className="flex flex-col items-center justify-center lg:justify-evenly lg:w-4/5 mx-auto gap-4 md:flex-row ">
         <div>
           <h3  className="my-2 ">Information</h3>
           <ul className="flex flex-col items-center">
@@ -60,7 +60,7 @@ export default function Footer() {
           <li><Link href={'/'}><FontAwesomeIcon icon={faInstagram} /></Link></li>
           <li><Link href={'/'}><FontAwesomeIcon icon={faWhatsapp} /></Link></li>
         </ul>
-        <h4 className="text-text-primary">©copyright developed by Dubo It Solution </h4>
+        <h4 className="text-text-primary">©developed by BICTE Balkumari</h4>
       </div>
     </footer>
   )

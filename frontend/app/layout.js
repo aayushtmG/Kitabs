@@ -1,7 +1,5 @@
 import "./globals.css";
 import { Roboto } from 'next/font/google'
-import Header from "../components/Header";
-import Footer from '../components/Footer'
 
 
 
@@ -12,8 +10,8 @@ const roboto = Roboto({
 })
 
 export const metadata = {
-  title: "Ample Chair",
-  description: "ample chair",
+  title: "Kitabs",
+  description: "Kitabs online bookstore",
 };
 
 export default function RootLayout({ children }) {

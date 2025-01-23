@@ -10,7 +10,6 @@ const __dirname = import.meta.dirname
 
 app.use('/uploads/',express.static(path.resolve(__dirname,'../public/images')));
 
-
 app.use(cors())
 app.use(express.json({ limit: "10kb" }));
 

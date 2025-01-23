@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/mnt/projects/ample/frontend/app/layout\":[\"static/media/120a5a1920781bd0-s.p.woff2\",\"static/media/da897b99eb1fe4a1-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/mnt/disk3/project-bicte/frontend/app/layout\":[\"static/media/47cbc4e2adbc5db9-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

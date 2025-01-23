@@ -1,15 +1,15 @@
 {
-  "name": "ample-backend",
+  "name": "project-bicte-backend",
   "version": "1.0.0",
-  "description": "Backend for ample app",
+  "description": "Backend for bicte app",
   "type": "module",
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon src/server.js"
   },
   "keywords": [
-    "ample",
-    "chair"
+    "bicte",
+    "final year project"
   ],
   "author": "Aayush Tamang",
   "license": "ISC",

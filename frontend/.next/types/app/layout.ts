@@ -1,4 +1,4 @@
-// File: /mnt/projects/ample/frontend/app/layout.js
+// File: /mnt/disk3/project-bicte/frontend/app/layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

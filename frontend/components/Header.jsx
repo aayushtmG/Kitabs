@@ -31,15 +31,15 @@ export default function Header() {
   return (
     <>
     <header className={`fixed z-50 w-full ${isScrolled && 'bg-white shadow-md'} transition-colors  `}>
-      <nav className={`flex max-lg:px-2 lg:w-4/5 mx-auto justify-between items-center`}>
+      <nav className={`flex max-lg:px-2 py-4 lg:w-4/5 mx-auto justify-between items-center`}>
         <Link href={'/'} >
-          <img src="/images/ample-chair-logo.png" alt="logo" width={100} height={0}/>
+          <img src="/images/logo.png" alt="logo" width={200} height={0}/>
         </Link>
         <ul className='md:flex justify-between md:w-1/2 hidden '>
             {NavLinks.map(({name,route})=>
               <li 
               key={name}
-              className={ urlPath === route ? "text-secondary font-extrabold" : ""}
+                className={`${urlPath === route ? 'text-secondary font-bold':''}`}
               >
                 <Link href={route}>{name}</Link>
               </li>
@@ -54,11 +54,9 @@ export default function Header() {
             {NavLinks.map(({ name, route }) => (
               <li
                 key={name}
-                className={
-                  urlPath === route ? 'text-secondary font-bold' : ''
-                }
+                className={`${urlPath === route ? 'text-secondary font-bold':''}`}
               >
-                <Link href={route} onClick={() => setIsMenuActive(false)}>
+                <Link href={route}  onClick={() => setIsMenuActive(false)}>
                   {name}
                 </Link>
               </li>
