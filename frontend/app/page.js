@@ -62,7 +62,7 @@ export default function Home() {
     <p className="mt-4 text-sm md:text-base xl:text-lg">
       Explore our vast collection of books, from bestsellers to hidden gems. Whether you're into thrilling mysteries, heartwarming romances, or thought-provoking non-fiction, we have something for every reader. Dive into a world of stories and knowledge today!
     </p>
-    <p className="mt-2 text-lg font-semibold">Starting From Only <span className="text-orange-400">200 Rupees</span></p>
+    <p className="mt-2 text-lg font-semibold">Starting From Only <span className="text-orange-400">Rs 200</span></p>
     <button className='bg-secondary text-white p-4 px-6 w-fit btn-primary rounded-md my-4 hover:text-white' onClick={()=> alert('hello')}>
       Browse Our Collection
     </button>

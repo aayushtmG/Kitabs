@@ -5,10 +5,10 @@ import { useEffect, useState } from "react"
 import MainLayout from "layouts/MainLayout"
 
 const categoryList=[
-  'All Products',
-  'Gaming Chair',
-  'Office Chair',
-  'House Chair'
+  'All Collection',
+  'Fiction ',
+  'Non-fiction',
+  'Kids'
 ]
 const sortList=[
   'low to high',
