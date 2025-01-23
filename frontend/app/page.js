@@ -54,22 +54,6 @@ export default function Home() {
             }
           </div>
     </section>
-{/* Banner section
-<div className="relative bg-gray-900 text-white h-[500px] my-20 flex justify-center items-center">
-  <div className="absolute inset-0 bg-cover bg-center bg-no-repeat banner" ></div>
-  <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div className="relative max-w-4xl mx-auto px-8 py-16 text-center md:text-left">
-    <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold banner-text">Unlimited Chair Collection</h1>
-    <p className="mt-4 text-sm md:text-base xl:text-lg">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-    <p className="mt-2 text-lg font-semibold">Starting From <span className="text-orange-400">$199</span></p>
-        <button className='bg-secondary text-white p-4 px-6 w-fit btn-primary rounded-md my-4 hover:text-white' onClick={()=> alert('hello')}>
-          View Our Products
-        </button>
-  </div>
-</div> */}
-{/* Banner section */}
 <div className="relative bg-gray-900 text-white h-[500px] my-20 flex justify-center items-center">
   <div className="absolute inset-0 bg-cover bg-center bg-no-repeat banner" ></div>
   <div className="absolute inset-0 bg-black bg-opacity-60"></div>

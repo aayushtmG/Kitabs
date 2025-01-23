@@ -110,10 +110,12 @@ export default function Page() {
           </select>
           </div>
        </div>
+       <div className="min-h-[calc(100vh-600px)]">
         {
-          isLoading ? <div><h3>Loading....</h3></div>:
+          isLoading ? <div className="h-[calc(100vh-600px)] grid place-items-center"><h3 className="text-base lg:text-2xl 3xl:text-3xl">Loading....</h3></div>:
         <ProductListings products={products}></ProductListings>
         }
+       </div>
         {
         products.length > 1 &&
         <Pagination  totalProducts={products.length} productsPerPage={productsPerPage} paginate={paginate} currentPage={currentPage} setCurrentPage={setCurrentPage}/>

@@ -6,7 +6,7 @@ const page = () => {
         <MainLayout>
     <div className="w-full">
       {/* Pink Header Section */}
-      <div className="bg-primary text-center h-[300px] pt-24 ">
+      <div className="shadow-md text-center h-[300px] pt-24 ">
         <h1 className="text-4xl xl:text-5xl font-extrabold text-text-primary tracking-wider ">Contact</h1>
       </div>
       {/* Content Section */}
