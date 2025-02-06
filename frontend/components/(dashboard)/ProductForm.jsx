@@ -34,7 +34,7 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
     Array.from(formData.images).forEach(img => {
       submittingData.append('images',img);
     })
-    const response = await fetch(`http://localhost:5000/api/products/add-product`,{
+    const response = await fetch(`${process.env.NODE_PUBLIC_SERVER_ADDRESS}/api/products/add-product`,{
       method:'POST',
       body:submittingData 
     })
@@ -47,7 +47,7 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
 
   const updateProduct = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5000/api/products/${product._id}`,{
+    await fetch(`${process.env.NODE_PUBLIC_SERVER_ADDRESS}/api/products/${product._id}`,{
       method:'PUT',
       headers: {'Content-Type': 'application/json', },
       body: JSON.stringify({
