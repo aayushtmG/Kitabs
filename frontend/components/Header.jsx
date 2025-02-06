@@ -68,7 +68,7 @@ export default function Header() {
             ))}
           </ul>
         <button className='max-md:block hidden rounded-md border-2 border-secondary p-3 w-10' onClick={()=> setIsMenuActive(!isMenuActive)}>
-          {isMenuActive ? <FontAwesomeIcon icon={faXmark} color='#e99c2e'/> : 
+          {isMenuActive ? <FontAwesomeIcon icon={faXmark} color='#0074D9'/> : 
           <FontAwesomeIcon icon={faBars} color='#e99c2e'/>}
         </button>
       </nav>
