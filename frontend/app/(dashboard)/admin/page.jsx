@@ -1,20 +1,22 @@
 'use client'
-import { Router, useRouter } from 'next/navigation';
-import {useState,useEffect} from 'react';
-import AdminDashboard from '../../../components/AdminDashboard'
-export default function page(){ 
-    const user = false;
-    const router = useRouter();
+import {  useRouter } from 'next/navigation';
+import {useEffect} from 'react';
+import { useSelector } from 'react-redux';
+import ProfileForm from '../admin/profile/page'
 
-  useEffect(() => {
-        if (!user) {
-            router.push('/admin/login'); // Redirect to the login page if not authenticated
+export default function page(){ 
+    const { user, isAuthenticated } = useSelector((state) => state.user);
+    const router = useRouter();
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/admin/login');
         }
-    }, [user, router]); // Run this effect whenever `user` or `router` changes
+    }, [user, router]);
 
     if(!user){
         return <><h1>...Loading</h1></>
     }
-    return <AdminDashboard/>
+    return <ProfileForm></ProfileForm> 
+       
 }
 

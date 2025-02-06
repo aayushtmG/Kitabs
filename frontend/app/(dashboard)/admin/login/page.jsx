@@ -1,8 +1,15 @@
-import Login from "../../../../components/Login"
+'use client'
+import Login from "@/components/Login"
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux"
+
 const page = () => {
-  return<>
-  <Login></Login>
-  </>
+  const {isAuthenticated} = useSelector(state => state.user);
+  const router = useRouter();
+  if(isAuthenticated){
+   router.push('/admin'); 
+  }
+  return <Login />
 }
 
 

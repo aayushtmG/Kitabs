@@ -1,8 +1,8 @@
-// File: /mnt/disk3/project-bicte/frontend/app/about/page.jsx
-import * as entry from '../../../../app/about/page.js'
+// File: /mnt/disk3/project-bicte/frontend/app/(dashboard)/admin/products/page.jsx
+import * as entry from '../../../../../../app/(dashboard)/admin/products/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../app/about/page.js')
+type TEntry = typeof import('../../../../../../app/(dashboard)/admin/products/page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

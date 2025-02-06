@@ -26,7 +26,7 @@ function SuggestionBlock() {
   const [productFetched,setProductFetched] = useState(false);
 
   const fetchProducts= async()=>{
-    const response = await fetch('http://127.0.0.1:5000/api/products')
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products`)
     const body = await response.json();
     setSuggestedProducts(body.products);
   }

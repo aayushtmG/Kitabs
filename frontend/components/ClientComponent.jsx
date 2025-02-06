@@ -11,7 +11,7 @@ function ProductDetailsClient({ productId }) {
   const [productFetched,setProductFetched] = useState(false);
   //todo
   const fetchProduct = async()=>{
-    const response = await fetch(`http://127.0.0.1:5000/api/products/${productId}`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products/${productId}`)
     const body = await response.json();
       setProduct(body.product);
       setProductFetched(true);
@@ -23,7 +23,7 @@ function ProductDetailsClient({ productId }) {
   //setCategory after fetching data
   return (
     <section>
-      <div className="bg-primary py-10">
+      <div className=" py-10">
         <div className="pt-20 max-w-6xl mx-auto">
           <Link
             href={'./'}

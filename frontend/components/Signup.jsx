@@ -1,7 +1,15 @@
 'use client'
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { useRouter } from "next/navigation";
+import Notifier from '../components/ui/Notifier';
+import { NotifierContext } from '@/context/NotifierContext';
+
 
 const Signup = ()=>{
+
+  const {notifierMessage,notifierVisible,notify} = useContext(NotifierContext)
+    const router = useRouter();
+    const [error, setError] = useState(''); // State for error messages
     const [username,setUsername] = useState('');    
     const [password,setPassword] = useState('');    
     const [confirmPassword,setConfirmPassword] = useState('');
@@ -9,8 +17,7 @@ const Signup = ()=>{
     const [fullName, setFullName] = useState('')
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        console.log(username,password);
-        const user =await fetch('http://127.0.0.1:5000/api/users/create-user',{
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/users/create-user`,{
         method:'POST',
         headers:{
                 'Content-Type':'application/json'
@@ -18,19 +25,22 @@ const Signup = ()=>{
         body:JSON.stringify({
         username: username,
         password: password,
-        confirmPassword:confirmPassword,
+        passwordConfirm: confirmPassword,
         email:email,
         fullName:fullName,
         })
         })
-
-        if(user.ok){
-            console.log('success'); 
+        const result = await response.json()
+        if(result.success){
+            notify('User created')
+            router.push('/admin/login')
         }else{
-            console.log(user.json());
+
+                setError(result.message ||'Something went wrong. Please try again later.' );
         }
     }
 return <section className="flex justify-center items-center h-screen">
+    {notifierMessage && <Notifier message={notifierMessage} visible={notifierVisible}/>}
         <div
     className="relative mx-auto w-full max-w-md bg-white px-6 py-20  shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
     <div className="w-full">
@@ -39,6 +49,11 @@ return <section className="flex justify-center items-center h-screen">
             <p className="mt-2 text-gray-500">Sign up and begin right away</p>
         </div>
         <div className="mt-5">
+                        {error && (
+                            <div className="mb-4 text-sm text-red-500 capitalize">
+                                {error}
+                            </div>
+                        )}
             <form method="POST" onSubmit={handleSubmit}>
                 <div className="relative mt-6">
                     <input type="text" name="fullName" id="fullName" placeholder="Full Name" value={fullName} onChange={(e)=> setFullName(e.target.value)} className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none" autoComplete="NA" />

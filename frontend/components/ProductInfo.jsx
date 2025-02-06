@@ -10,6 +10,7 @@ function ProductInfo({ productData}) {
       <div className="text-xl lg:text-3xl text-palette-primary font-bold py-4 px-1">
        <span>Rs. {productData.price}</span>  
       </div>
+      <button className="bg-primary text-white p-2 px-4 rounded-md border border-primary hover:bg-transparent transition-colors hover:text-primary">Add To Cart</button>
     </div>
   )
 }

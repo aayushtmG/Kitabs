@@ -9,7 +9,7 @@ const NavLinks = [
   {name:  'Home',route:  '/'},
   {name:  'Products',route:   '/products'},
   {name:  'About Us',route:   '/about'},
-  {name:  'Contact',route:   '/contact'}
+  {name:  'Contact',route:   '/contact'},
 ];
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
         <Link href={'/'} >
           <img src="/images/logo.png" alt="logo" width={200} height={0}/>
         </Link>
-        <ul className='md:flex justify-between md:w-1/2 hidden '>
+        <ul className='md:flex items-center justify-between md:w-1/2 hidden '>
             {NavLinks.map(({name,route})=>
               <li 
               key={name}
@@ -44,6 +44,11 @@ export default function Header() {
                 <Link href={route}>{name}</Link>
               </li>
             )}
+              <li 
+              className="bg-primary text-white p-1 px-4 rounded-md border border-primary hover:bg-transparent transition-colors hover:text-primary"
+              >
+                <Link href={'/admin/login'}>Login</Link>
+              </li>
         </ul>
           {/* Mobile Navigation */}
            <ul

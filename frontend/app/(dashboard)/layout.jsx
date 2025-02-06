@@ -1,10 +1,14 @@
 import '.././globals.css'
+import AdminDasboardLayout from '@/components/AdminDashboardLayout';
 export const metadata = {
   title: "Admin panel",
-  description: "ample chair",
+  description: "kitabs books",
 };
+
 
 export default function AdminLayout({ children }) {
   return (
-    <main >{children}</main>);
+    <AdminDasboardLayout>
+      <main >{children}</main>
+    </AdminDasboardLayout>);
 }

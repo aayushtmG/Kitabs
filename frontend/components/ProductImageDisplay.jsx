@@ -2,11 +2,11 @@
 import { useState  } from 'react'
 import Image from 'next/image'
 
-const images = [
-  'arrivals1.png',
-  'featured_product1.png',
-  'arrivals2.png',
-]
+// const images = [
+//   'arrivals1.png',
+//   'featured_product1.png',
+//   'arrivals2.png',
+// ]
 
 function ProductImageDisplay({images,title}) {
   const [mainImage,setMainImage] = useState(images[0]);
@@ -14,7 +14,7 @@ function ProductImageDisplay({images,title}) {
     <div className=" w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded-md shadow-lg p-4 ">
       <div className="relative h-96 grid place-items-center border-b border-">
         <Image
-          src={`${mainImage}`}
+src={`${process.env.NEXT_PUBLIC_SERVER_ADDRESS+mainImage}`}
           alt={title}
           width={500}
           height={0}
@@ -23,7 +23,7 @@ function ProductImageDisplay({images,title}) {
       </div>
       <div className="relative flex">
         {/* mini display */}
-        <div
+        {/* <div
           style={{ scrollBehavior: "smooth" }}
           className="flex space-x-3 w-1/2 my-4 overflow-auto mx-auto " 
         >
@@ -37,7 +37,7 @@ function ProductImageDisplay({images,title}) {
                 
               >
                 <Image
-                  src={`${image}`}
+src={`${process.env.NEXT_PUBLIC_SERVER_ADDRESS+image}`}
                   alt={title}
                   width={100}
                   height={0}
@@ -46,7 +46,7 @@ function ProductImageDisplay({images,title}) {
               </button>
             ))
           }
-        </div>
+        </div> */}
       </div>
     </div>
   )
