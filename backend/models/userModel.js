@@ -11,13 +11,17 @@ const userSchema = new mongoose.Schema({
     required:[true,"Please provide username"],
     unique:true
   },
+  email:{
+    type:String,
+    required:[true,"Please provide email"],
+    unique:true
+  },
   password:{
     type:String,
     required:[true,"Please provide password"]
   },
   passwordConfirm:{
     type:String,
-    required:[true,"Please confirm your password"],
     validate:{
       validator: function(el){
         return el == this.password;
@@ -26,6 +30,7 @@ const userSchema = new mongoose.Schema({
     }
   }
 })
+
 
 const User = mongoose.model('User',userSchema); 
 export default User;

@@ -10,8 +10,6 @@ router.delete('/delete/:id',userController.deleteUser);
 
 router.post('/create-user',authController.signUp);
 router.post('/signin',authController.signIn)
-router.patch('/updatePassword/:id',authController.updatePassword);
-
 
 
 export default router

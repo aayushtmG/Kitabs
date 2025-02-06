@@ -1,57 +1,126 @@
-import catchAsync from "../utils/CatchAsync.js";
-import User from '../models/userModel.js'
 
-export const signIn = catchAsync(async (req,res,next)=>{
-  const {username,password} = req.body;
-  const user = await  User.findOne({username,password});
+import User from '../models/userModel.js';
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
-  if(!user){
-   return next(new Error('Couldnt find the user'));
+export const signIn = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    let user = await User.findOne({ email }).select("+password");
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "user doesn't exist",
+      });
+    }
+    if (await bcrypt.compare(password, user.password)) {
+      //sending cookie
+      let token = jwt.sign(
+        {
+          id: user._id,
+        },
+        process.env.JWT_SECRET
+      );
+      let token_option = {
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days from now
+        httpOnly: true, // Makes the cookie accessible only via HTTP requests
+        secure: process.env.NODE_ENV === 'production', // Ensures the cookie is only sent over HTTPS in production
+        sameSite: 'None', // For cross-origin requests with credentials
+      };
+      
+      return res.cookie("token", token, token_option).json({
+        success: true,
+        message: "Your Signed IN",
+        user,
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "password doesn't match",
+      });
+    }
+  } catch (err) {
+    return res.json({
+      success: false,
+      message: err.message,
+    });
   }
+};
 
-  res.status(200).json({
-    message:'success',
-    loggedUser:user
-  })
-});
+export const signUp = async (req, res) => {
+  try {
+    const { fullName, email, password,passwordConfirm, username } = req.body;
+    if ((username || email || password) == "") {
+      return res.json({
+        success: false,
+        message: "please fill out ",
+      });
+    }
+    if (password != passwordConfirm) {
+      return res.json({
+        success: false,
+        message: "confirm password",
+      });
+    }
 
+    let new_user = await User.findOne({ email });
+    if (new_user) {
+      return res.json({
+        success: false,
+        message: "user already exist",
+      });
+    }
+    let hash_password = await bcrypt.hash(password, 10);
 
-export const  signUp = catchAsync(async (req,res)=>{
+    new_user = await User.create({
+      username,
+      fullName,
+      email,
+      password: hash_password,
+    });
+    //sending cookie
+    let token = jwt.sign(
+      {
+        id: new_user._id,
+      },
+      process.env.JWT_SECRET
+    );
+    let token_option = {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days from now
+      httpOnly: true, // Makes the cookie accessible only via HTTP requests
+      secure: process.env.NODE_ENV === 'production', // Ensures the cookie is only sent over HTTPS in production
+      sameSite: 'None', // For cross-origin requests with credentials
+    };
+    
+    return res.cookie("token", token, token_option).json({
+      success: true,
+      message: "Your Signed Up",
+      new_user,
+    });
+  } catch (err) {
+    if(err.code = '11000'){
+      const duplicate = `Duplicate record: ${err.errmsg.split('{')[1].split('}')[0]} found`;
+    return res.json({
+      success: false,
+      message:duplicate
+    });
+    }
 
-  const newUser = await User.create({
-    fullName: req.body.fullName,
-    username: req.body.username,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm
-  }) 
-
-  res.status(201).json({
-    message:'success',
-    newUser
-  })
-
-});
-
-export const updatePassword = catchAsync(async (req,res,next)=>{
-  const _id = req.params.id
-
-  const user = await User.findById(_id).select('+password +confirmPassword');
-  if(!user){
-    return next(new Error('Cannot find user'))
+    return res.json({
+      success: false,
+      message:err.msg
+    });
   }
+};
 
-  if(req.body.currentPassword !== user.password){
-    return next(new Error('Previous password does\'nt match'))
-  }
-  if(req.body.newPassword !== req.body.newConfirmPassword){
-    return next(new Error('Please confirm your password'))
-  }
-  user.password = req.body.newPassword 
-  user.passwordConfirm = req.body.newConfirmPassword 
+export const signOut = async (req, res) => {
+  // Clear the cookie
+  res.clearCookie("token");
 
-  await user.save()
-  res.status(200).json({
-    message:'password updated',
-  })
-
-});
+  // Send the response back
+  res.json({
+    success: true,
+    message: "Signed out successfully",
+  });
+};
