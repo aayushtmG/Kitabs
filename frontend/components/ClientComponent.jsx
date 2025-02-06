@@ -11,7 +11,7 @@ function ProductDetailsClient({ productId }) {
   const [productFetched,setProductFetched] = useState(false);
   //todo
   const fetchProduct = async()=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products/${productId}`)
+    const response = await fetch(`https://kitabs.onrender.com/api/products/${productId}`)
     const body = await response.json();
       setProduct(body.product);
       setProductFetched(true);

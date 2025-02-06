@@ -42,7 +42,7 @@ function ProductList() {
   //change Page
   const paginate = pageNumber => setCurrentPage(pageNumber); 
   const fetchProducts = async()=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/products`) 
     const body = await response.json()
     pagination(body.products)
     setIsLoading(false)
@@ -75,7 +75,7 @@ function ProductList() {
   }
   const {notifierVisible,notifierMessage,notify} = useContext(NotifierContext)
   const handleDelete = async (product)=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products/delete/${product._id}`,{
+    const response = await fetch(`https://kitabs.onrender.com/api/products/delete/${product._id}`,{
       method:'DELETE'
     })  
     notify(`Deleted ${product.title}`)

@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_SERVER_ADDRESS || 'localhost',
+        hostname: "https://kitabs.onrender.com" || 'localhost',
         pathname: '/uploads/products/**',
       },
     ],

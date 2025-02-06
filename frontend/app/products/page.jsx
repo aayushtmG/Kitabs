@@ -48,7 +48,7 @@ export default function Page() {
   const paginate = pageNumber => setCurrentPage(pageNumber); 
 
   const fetchProducts = async()=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/products`) 
     const body = await response.json()
     pagination(body.products)
     setIsLoading(false)

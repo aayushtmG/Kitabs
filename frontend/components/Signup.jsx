@@ -17,7 +17,7 @@ const Signup = ()=>{
     const [fullName, setFullName] = useState('')
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/users/create-user`,{
+        const response = await fetch(`https://kitabs.onrender.com/api/users/create-user`,{
         method:'POST',
         headers:{
                 'Content-Type':'application/json'

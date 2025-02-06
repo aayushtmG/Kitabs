@@ -20,7 +20,7 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api/users/signin`, {
+            const response = await fetch(`https://kitabs.onrender.com/api/users/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

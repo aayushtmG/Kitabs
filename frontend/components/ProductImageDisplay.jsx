@@ -14,7 +14,7 @@ function ProductImageDisplay({images,title}) {
     <div className=" w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded-md shadow-lg p-4 ">
       <div className="relative h-96 grid place-items-center border-b border-">
         <Image
-src={`${process.env.NEXT_PUBLIC_SERVER_ADDRESS+mainImage}`}
+src={`https://kitabs.onrender.com${mainImage}`}
           alt={title}
           width={500}
           height={0}
@@ -37,7 +37,7 @@ src={`${process.env.NEXT_PUBLIC_SERVER_ADDRESS+mainImage}`}
                 
               >
                 <Image
-src={`${process.env.NEXT_PUBLIC_SERVER_ADDRESS+image}`}
+src={`https://kitabs.onrender.com${image}`}
                   alt={title}
                   width={100}
                   height={0}
