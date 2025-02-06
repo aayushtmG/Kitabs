@@ -4,7 +4,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: "https://kitabs.onrender.com" || 'localhost',
+        hostname: 'kitabs.onrender.com', // Just the hostname, without "https://"
+        pathname: '/uploads/products/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost', // Add localhost for development purposes
         pathname: '/uploads/products/**',
       },
     ],
@@ -12,3 +17,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
