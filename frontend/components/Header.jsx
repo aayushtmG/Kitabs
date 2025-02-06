@@ -4,6 +4,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 const NavLinks = [
   {name:  'Home',route:  '/'},
@@ -16,6 +17,7 @@ export default function Header() {
   const urlPath = usePathname();
   const [isMenuActive,setIsMenuActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const {isAuthenticated} = useSelector(state=> state.user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,11 +46,19 @@ export default function Header() {
                 <Link href={route}>{name}</Link>
               </li>
             )}
+            {
+              isAuthenticated ? 
+              <li 
+              className="bg-primary text-white p-1 px-4 rounded-md border border-primary hover:bg-transparent transition-colors hover:text-primary"
+              >
+                <Link href={'/admin'}>Dashboard</Link>
+              </li> :
               <li 
               className="bg-primary text-white p-1 px-4 rounded-md border border-primary hover:bg-transparent transition-colors hover:text-primary"
               >
                 <Link href={'/admin/login'}>Login</Link>
               </li>
+            }
         </ul>
           {/* Mobile Navigation */}
            <ul
@@ -69,7 +79,7 @@ export default function Header() {
           </ul>
         <button className='max-md:block hidden rounded-md border-2 border-secondary p-3 w-10' onClick={()=> setIsMenuActive(!isMenuActive)}>
           {isMenuActive ? <FontAwesomeIcon icon={faXmark} color='#0074D9'/> : 
-          <FontAwesomeIcon icon={faBars} color='#e99c2e'/>}
+          <FontAwesomeIcon icon={faBars} color='#0074D9'/>}
         </button>
       </nav>
     </header>

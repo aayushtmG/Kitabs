@@ -5,20 +5,24 @@ import ProductCard from "../components/ProductCard"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import MainLayout from '../layouts/MainLayout.jsx'
+import {TailSpin} from 'react-loader-spinner'
 
 
 export default function Home() {
   const [products,setProducts] = useState([]) 
-
+  const [isLoading,setIsLoading] = useState(true);
   const fetchProducts = async()=>{
     const response = await fetch(`https://kitabs.onrender.com/api/products`) 
     const body = await response.json()
     setProducts(body.products); 
+    setIsLoading(false)
   }
 
   useEffect(()=>{
     fetchProducts();
   },[])
+
+
   return (
     <MainLayout>
     <section className='h-[920px]  pt-20 flex justify-center items-center'>
@@ -34,16 +38,28 @@ export default function Home() {
           </Link>
         </div>
         <div className='basis-2/5'>
-          <Image src="/images/hero_image.png" alt="chair image" className='max-sm:w-[300px] w-full mx-auto max-sm:mb-4' width={300} height={0}/>
+          <Image src="/images/hero_image.png" alt="Book image" className='max-sm:w-[300px] w-full mx-auto max-sm:mb-4' width={300} height={0}/>
         </div>
       </div>
     </section>
     {/* New Arrivals section*/}
     <section className='flex flex-col items-center justify-center space-y-4 mt-20 '>
           <h1 className='text-5xl font-bold  text-text-primary my-10 text-center'>New Arrivals</h1>
-          <div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 w-full xl:w-3/4 '>
+            {
+              isLoading ? <div className="flex justify-center w-full "> <TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#0074D9"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> </div>: 
+          (<div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 w-full xl:w-3/4 '>
             {
               products.map(({_id,title,images})=>
+
                 <ProductCard
                   key={_id}
                   id={_id}
@@ -52,7 +68,7 @@ export default function Home() {
                 />
               )
             }
-          </div>
+          </div>)}
     </section>
 <div className="relative bg-gray-900 text-white h-[500px] my-20 flex justify-center items-center">
   <div className="absolute inset-0 bg-cover bg-center bg-no-repeat banner" ></div>
@@ -73,6 +89,18 @@ export default function Home() {
     {/* Featured product section */}
     <section className='flex flex-col items-center justify-center space-y-4 mt-20 '>
           <h1 className='text-5xl font-bold  text-text-primary my-10 text-center'>Featured Products</h1>
+
+            {
+              isLoading ? <div className="flex justify-center w-full "> <TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#0074D9"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> </div>: 
           <div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full xl:w-3/4 my-10 '>
             {
               products.map(({_id,images,title})=>
@@ -85,6 +113,7 @@ export default function Home() {
               )
             }
           </div>
+          }
     </section>
 </MainLayout>
   )

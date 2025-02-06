@@ -5,16 +5,17 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect,useState } from 'react';
+import { TailSpin } from 'react-loader-spinner';
 
 function ProductDetailsClient({ productId }) {
   const [product,setProduct] = useState('');
-  const [productFetched,setProductFetched] = useState(false);
+  const [isLoading,setIsLoading] = useState(true)
   //todo
   const fetchProduct = async()=>{
     const response = await fetch(`https://kitabs.onrender.com/api/products/${productId}`)
     const body = await response.json();
       setProduct(body.product);
-      setProductFetched(true);
+      setIsLoading(false);
   }
   //fetch product with id
   useEffect(()=>{
@@ -32,13 +33,32 @@ function ProductDetailsClient({ productId }) {
             <FontAwesomeIcon icon={faArrowLeft} className="mr-2 font-semibold" />
             Back
           </Link>
-          {
-            productFetched && <ProductDetails product={product} />
+            {
+              isLoading ? <div className="flex justify-center w-full "> <TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#0074D9"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> </div> : 
+             <ProductDetails product={product} />
           }
         </div>
       </div>
-      {
-        productFetched &&
+            {
+              isLoading ? <div className="flex justify-center w-full "> <TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#0074D9"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> </div>: 
       <SuggestionBlock />
       }
     </section>

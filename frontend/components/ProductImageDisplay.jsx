@@ -2,11 +2,6 @@
 import { useState  } from 'react'
 import Image from 'next/image'
 
-// const images = [
-//   'arrivals1.png',
-//   'featured_product1.png',
-//   'arrivals2.png',
-// ]
 
 function ProductImageDisplay({images,title}) {
   const [mainImage,setMainImage] = useState(images[0]);

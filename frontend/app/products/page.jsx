@@ -3,6 +3,7 @@ import ProductListings from "@/components/ProductListing"
 import Pagination from '@/components/Pagination'
 import { useEffect, useState } from "react"
 import MainLayout from "layouts/MainLayout"
+import { TailSpin } from "react-loader-spinner"
 
 const categoryList=[
   'All Collection',
@@ -112,7 +113,18 @@ export default function Page() {
        </div>
        <div className="min-h-[calc(100vh-600px)]">
         {
-          isLoading ? <div className="h-[calc(100vh-600px)] grid place-items-center"><h3 className="text-base lg:text-2xl 3xl:text-3xl">Loading....</h3></div>:
+          isLoading ? 
+<div className="flex justify-center w-full "> <TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#0074D9"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> </div>
+          :
         <ProductListings products={products}></ProductListings>
         }
        </div>
