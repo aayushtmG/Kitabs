@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import MainLayout from '../layouts/MainLayout.jsx'
 import {TailSpin} from 'react-loader-spinner'
+import MotivationalBlock from '@/components/MotivationalBlock'
 
 
 export default function Home() {
@@ -127,6 +128,7 @@ export default function Home() {
           </div>
           }
     </section>
+            <MotivationalBlock/>
 </MainLayout>
   )
 }

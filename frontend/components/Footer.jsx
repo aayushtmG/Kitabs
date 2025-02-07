@@ -7,10 +7,10 @@ export default function Footer() {
   return (
     <footer className="mt-20 bg-secondary pt-10">
       {/* upper section */}
-      <div className="flex flex-col items-center justify-center lg:justify-evenly lg:w-4/5 mx-auto gap-4 md:flex-row  text-white">
-        <div>
-          <h3  className="my-2 ">Information</h3>
-          <ul className="flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center  w-3/5 mx-auto gap-4 md:flex-row md:items-start   text-white">
+        <div className="w-full ">
+          <h3  className="my-2 max-md:text-center">Information</h3>
+          <ul className="flex flex-col max-md:items-center">
             <li>
               <Link href={'/'}>About Us</Link>
             </li>
@@ -22,9 +22,9 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div>
-            <h3 className="my-2">Collections</h3>
-            <ul className="flex flex-col items-center">
+        <div className="w-full ">
+            <h3 className="my-2 max-md:text-center">Collections</h3>
+            <ul className="flex flex-col max-md:text-center">
               <li>
                 <Link href={'/fiction'}>Fiction</Link>
               </li>
@@ -36,7 +36,7 @@ export default function Footer() {
               </li>
             </ul>
         </div>
-        <div >
+        <div className="w-full" >
             <h3 className="my-2 text-center md:text-start">Newsletter</h3>
             <div className="flex flex-col justify-center items-center  md:items-start space-y-2">
                 <p className="text-white/80 text-sm lg:text-base"> Subscribe to get latest news,update and information. </p>
