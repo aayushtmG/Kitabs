@@ -54,7 +54,7 @@ const MotivationalBlock = () => {
   }, []);
 
   return (
-    <div ref={ref} className="flex items-center justify-center p-6 my-4 gap-24">
+    <div ref={ref} className="flex flex-col-reverse md:flex-row items-center justify-center p-6 my-4 md:gap-24">
       <div className={`max-w-md ${isVisible ? "fade-in" : ""}`}>
         <h1 className="text-4xl font-bold text-gray-800 mb-4">"Climb the ladder of knowledge"</h1>
         <p className="text-lg text-gray-600">
@@ -66,7 +66,7 @@ const MotivationalBlock = () => {
         <img
           src="/images/book_ladder.png"
           alt="floating books with ladders"
-          className="rounded-lg max-h-[500px]"
+          className="rounded-lg max-h-[300px] md:max-h-[500px]"
         />
       </div>
     </div>
