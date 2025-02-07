@@ -17,23 +17,60 @@ const upload = multer({storage})
 
 export const uploads = upload.array('images',6)
 
-export const getAllProducts = catchAsync(async (req,res)=>{
-  const {category} = req.query
-  if(category == 'all' || !category ){
-  const products = await Product.find();
+export const getAllProducts = catchAsync(async (req, res) => {
+  const { category, limit } = req.query;
+
+  const query = category && category !== 'all collection' ? { category } : {};
+
+  const parsedLimit = limit ? parseInt(limit) : undefined;
+
+  const products = await Product.find(query).limit(parsedLimit);
+
   res.status(200).json({
-    message:'success',
-    products
-  })
-}else{
-    const products = await Product.find({category})
-   res.status(200).json({
-    message:'success',
-    category,
-    products
-  })
-}
-})
+    message: 'success',
+    category: category || 'all collection',
+    products,
+  });
+});
+
+
+ export const getNewProducts = catchAsync(async (req, res) => {
+  try {
+const newArrival = await Product.find()
+  .sort({ createdAt: -1 }) // Sort by `createdAt` in descending order (latest first)
+  .limit(4); 
+
+    // Send response
+    res.status(200).json({
+      status: 'success',
+      products: newArrival,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: 'Failed to retrieve new arrival products',
+    });
+  }
+}); 
+
+ export const getFeaturedProducts = catchAsync(async (req, res) => {
+  try {
+    const featuredProducts = await Product.find()
+      .sort({ sold: -1 }) // Sort by `sold` in descending order
+      .limit(4); // Limit  5 results
+
+    // Send response
+    res.status(200).json({
+      status: 'success',
+      products: featuredProducts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: 'Failed to retrieve featured products',
+    });
+  }
+}); 
 
 export const getProduct = catchAsync(async (req,res)=>{
   const productId = req.params.id
@@ -44,10 +81,13 @@ export const getProduct = catchAsync(async (req,res)=>{
   })
 })
 export const addProduct = catchAsync(async(req,res)=>{
+  console.log(req.body)
   const newProduct = await Product.create({
     title: req.body.title,
     price: req.body.price,
     category: req.body.category,
+    stock:req.body.stock,
+    description: req.body.description,
     images: req.files.map(image => `/uploads/products/${image.filename}`)
   })
   res.status(201).json({

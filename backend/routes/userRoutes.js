@@ -5,7 +5,7 @@ import * as authController from '../controllers/authController.js'
 const router = express.Router();
 
 router.get('/',userController.getAllUsers);
-router.patch('/:id',userController.updateUser);
+router.post('/:id',userController.updateUser);
 router.delete('/delete/:id',userController.deleteUser);
 
 router.post('/create-user',authController.signUp);

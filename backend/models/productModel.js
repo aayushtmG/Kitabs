@@ -19,6 +19,10 @@ const productSchema = new mongoose.Schema({
     type:Number,
     default:0
   },
+  sold:{
+    type:Number,
+    default:0
+  },
   author:{
     type:String,
     required:[true,'Plase provide author name'],
