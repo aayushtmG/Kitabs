@@ -13,7 +13,7 @@ export default function Home() {
   const [featuredProducts,setFeaturedProducts] = useState([]) 
   const [isLoading,setIsLoading] = useState(true);
   const fetchProducts = async()=>{
-    const response = await fetch(`https://kitabs.onrender.com/api/new-products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/products/new-products`) 
     // const response = await fetch(`http://localhost:5000/api/products/new-products`) 
     const body = await response.json()
     setProducts(body.products); 
@@ -21,7 +21,7 @@ export default function Home() {
   }
   const fetchFeaturedProducts= async()=>{
     // const response = await fetch(`http://localhost:5000/api/products/featured-products`) 
-    const response = await fetch(`https://kitabs.onrender.com/api/products-products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/products/featured-products`) 
     const body = await response.json()
     console.log(body)
     setFeaturedProducts(body.products); 
