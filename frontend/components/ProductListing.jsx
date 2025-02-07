@@ -7,9 +7,7 @@ function ProductListings({ products }) {
         products.map((product, index) => (
                 <ProductCard
                   key={product._id}
-                  id={product._id}
-                  productImages={product.images}
-                  productName={product.title}
+                  product={product}
                 />
         ))
       }

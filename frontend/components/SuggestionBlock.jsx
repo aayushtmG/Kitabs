@@ -70,9 +70,7 @@ function SuggestionBlock() {
               key={product._id}
             >
               <ProductCard
-                id={product._id}
-                productImages={product.images}
-                productName={product.title}
+              product={product}
               />
             </div>
             ))

@@ -58,13 +58,15 @@ export default function Home() {
   /> </div>: 
           (<div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 w-full xl:w-3/4 '>
             {
-              products.map(({_id,title,images})=>
+              products.map((product)=>
 
                 <ProductCard
-                  key={_id}
-                  id={_id}
-                  productImages={images}
-                  productName={title}
+                  key={product._id}
+                  product={product}
+                  // id={_id}
+                  // productImages={images}
+                  // productName={title}
+                  // productPrice={price}
                 />
               )
             }
@@ -103,12 +105,10 @@ export default function Home() {
   /> </div>: 
           <div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full xl:w-3/4 my-10 '>
             {
-              products.map(({_id,images,title})=>
+              products.map((product)=>
                 <ProductCard
-                  key={_id}
-                  id={_id}
-                  productImages={images}
-                  productName={title}
+                  key={product._id}
+                  product={product}
                 />
               )
             }

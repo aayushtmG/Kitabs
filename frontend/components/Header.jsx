@@ -4,7 +4,17 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {setTotal, addItem, clearCart, removeItem } from 'store/slices/cartSlice';
+import { IoMdCart } from "react-icons/io"
+import CartList from '@/components/CartList'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/Sheet"
 
 const NavLinks = [
   {name:  'Home',route:  '/'},
@@ -18,7 +28,14 @@ export default function Header() {
   const [isMenuActive,setIsMenuActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const {isAuthenticated} = useSelector(state=> state.user);
+  const {items,total } = useSelector(state => state.cart);
+  const dispatch = useDispatch()
 
+
+
+  useEffect(() => {
+    dispatch(setTotal())
+  }, [items])
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -46,6 +63,28 @@ export default function Header() {
                 <Link href={route}>{name}</Link>
               </li>
             )}
+          <Sheet>
+            <SheetTrigger className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg focus:outline-none ">
+              <IoMdCart className="text-2xl  ml-3 hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
+              <span className="sr-only">Notifications</span>
+              <span
+                className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-secondary border-2 border-white rounded-lg -top-1 -end-2 "
+                id="waht"
+              >
+                {items.length}
+              </span>
+            </SheetTrigger>
+            <SheetContent className="max-md:w-5/6 ">
+              <SheetHeader>
+                <SheetTitle >Items in cart:</SheetTitle>
+              </SheetHeader>
+              <CartList
+                itemList={items}
+                total={total}
+                resetStore={clearCart}
+              />
+            </SheetContent>
+          </Sheet>
             {
               isAuthenticated ? 
               <li 
