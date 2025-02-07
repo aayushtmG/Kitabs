@@ -56,7 +56,7 @@ const MotivationalBlock = () => {
   return (
     <div ref={ref} className="flex items-center justify-center p-6 my-4 gap-24">
       <div className={`max-w-md ${isVisible ? "fade-in" : ""}`}>
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">"climb the ladder of knowledge"</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">"Climb the ladder of knowledge"</h1>
         <p className="text-lg text-gray-600">
           every page is a step closer to wisdom. start your journey today and never stop exploring.
         </p>
