@@ -54,7 +54,7 @@ export default function Header() {
         <Link href={'/'} >
           <img src="/images/logo.png" alt="logo" width={200} height={0}/>
         </Link>
-        <ul className='md:flex items-center justify-between md:w-1/2 hidden '>
+        <ul className='md:flex items-center justify-between xl:w-1/2 w-full hidden '>
             {NavLinks.map(({name,route})=>
               <li 
               key={name}
@@ -65,7 +65,7 @@ export default function Header() {
             )}
           <Sheet>
             <SheetTrigger className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg focus:outline-none ">
-              <IoMdCart className="text-2xl  ml-3 hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
+              <IoMdCart className="text-2xl  hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
               <span className="sr-only">Notifications</span>
               <span
                 className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-secondary border-2 border-white rounded-lg -top-1 -end-2 "
@@ -100,6 +100,31 @@ export default function Header() {
             }
         </ul>
           {/* Mobile Navigation */}
+          <div className='md:hidden flex w-full pr-4 justify-end'>
+          <Sheet>
+            <SheetTrigger className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg focus:outline-none ">
+              <IoMdCart className="text-2xl  hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
+              <span className="sr-only">Notifications</span>
+              <span
+                className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-secondary border-2 border-white rounded-lg -top-1 -end-2 "
+                id="waht"
+              >
+                {items.length}
+              </span>
+            </SheetTrigger>
+            <SheetContent className="max-md:w-5/6 ">
+              <SheetHeader>
+                <SheetTitle >Items in cart:</SheetTitle>
+              </SheetHeader>
+              <CartList
+                itemList={items}
+                total={total}
+                resetStore={clearCart}
+              />
+            </SheetContent>
+          </Sheet>
+          </div>
+
            <ul
             className={`fixed top-0 pt-20 pb-10 -z-10 right-0 rounded-md bg-white w-1/2 shadow-lg flex flex-col justify-center pl-10 transition-transform duration-300 ${
               isMenuActive ? 'translate-x-0' : 'translate-x-full'

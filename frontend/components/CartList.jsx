@@ -1,7 +1,7 @@
 import { useState } from "react"
 import CartItem from "./CartItem"
 import TotalPrice from "./TotalPrice"
-import Button from "./ui/Button"
+import { clearCart } from "store/slices/cartSlice"
 import {
   Dialog,
   DialogContent,
@@ -10,12 +10,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
+import { useDispatch } from "react-redux"
 
 const CartList = ({ itemList, total, resetStore }) => {
+  const dispatch= useDispatch()
   const [boughtItem, setBoughtItem] = useState([])
   const buyHandler = () => {
     setBoughtItem(itemList)
-    resetStore()
+   dispatch(clearCart() )
   }
   return (
     <div
@@ -40,7 +42,7 @@ const CartList = ({ itemList, total, resetStore }) => {
         >
           Buy
         </DialogTrigger>
-        <DialogContent className=" max-sm:w-[90%]">
+        <DialogContent className=" bg-white max-sm:w-[90%]">
           <DialogHeader>
             <DialogTitle>🎉 Congratulations!!! 🎉</DialogTitle>
             <DialogDescription>You bought:</DialogDescription>
