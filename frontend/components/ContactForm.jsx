@@ -1,4 +1,25 @@
+'use client'
+import { useState } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog"
+
 const ContactForm = ()=>{
+    const [fullName,setFullName] = useState('');
+    const [email,setEmail] = useState('');
+    const [message,setMessage] = useState('');
+
+   const handleSubmit = ()=>{
+        setEmail(''); 
+        setFullName(''); 
+        setMessage(''); 
+   } 
+
 return (
 <div className="bg-gray-50 xl:pb-20" id="contact">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 text-center">
@@ -42,28 +63,46 @@ return (
             </div>
         </div>
         <div>
-            <form>
+            <form onSubmit={e=>e.preventDefault()}>
                 <input type="checkbox"  className="hidden" style={{display:"none"}} name="botcheck"/>
                 <div className="mb-5">
                     <input type="text" placeholder="Full Name" autoComplete="false"
                         className="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100 "
-                        name="name"/>
+                        name="name"
+                        value={fullName}
+                        onChange={e => setFullName(e.target.value)}
+                        />
                 </div>
                 <div className="mb-5">
                     <label htmlFor="email_address" className="sr-only">Email Address</label>
                     <input id="email_address" type="email" placeholder="Email Address" autoComplete="false"
                         className="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4  border-gray-300 focus:border-gray-600 ring-gray-100 "
-                        name="email"/>
+                        name="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        />
                 </div>
                 <div className="mb-3">
                     <textarea placeholder="Your Message"
                         className="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none  h-36 focus:ring-4  border-gray-300 focus:border-gray-600 ring-gray-100 "
-                        name="message">
-                    </textarea>
+                        name="message"
+                        onChange={e => setMessage(e.target.value)}
+                        value={message}
+                        ></textarea>
                 </div>
-                <button type="submit"
-                    className="w-full py-4 font-semibold text-white transition-colors bg-secondary rounded-md hover:bg-transparent hover:text-secondary hover:border-secondary border focus:outline-none  focus:ring-offset-2 focus:ring-2 focus:ring-secondary px-7 ">Send Message
-                </button>
+      <Dialog>
+        <DialogTrigger
+className="w-full py-4 font-semibold text-white transition-colors bg-secondary rounded-md hover:bg-transparent hover:text-secondary hover:border-secondary border focus:outline-none  focus:ring-offset-2 focus:ring-2 focus:ring-secondary px-7 "
+          onClick={handleSubmit}
+        >
+                    Send Message
+        </DialogTrigger>
+        <DialogContent className=" bg-white max-sm:w-[90%]">
+          <DialogHeader>
+            <DialogTitle>Thank you for your message!!!</DialogTitle>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
             </form>
         </div>
     </div>

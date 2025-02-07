@@ -12,7 +12,7 @@ const page = () => {
       {/* Content Section */}
       <div className="flex flex-col items-center px-4 py-10 -translate-y-36">
         {/* Image Section */}
-        <div className="mb-8 max-md:w-full xl:w-4/5">
+        <div className="mb-8 w-full xl:w-4/5">
         {/* Map Section */}
         <Map></Map>
         </div>

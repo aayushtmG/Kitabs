@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="mt-20 bg-secondary pt-10">
       {/* upper section */}
-      <div className="flex flex-col items-center justify-center lg:justify-evenly lg:w-4/5 mx-auto gap-4 md:flex-row ">
+      <div className="flex flex-col items-center justify-center lg:justify-evenly lg:w-4/5 mx-auto gap-4 md:flex-row  text-white">
         <div>
           <h3  className="my-2 ">Information</h3>
           <ul className="flex flex-col items-center">

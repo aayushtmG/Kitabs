@@ -149,7 +149,7 @@ function ProductListTable({handleDelete,sortProducts,sort,products,handleModal})
               >
                 <td className="py-2 px-4">{index + 1}</td>
                 <td className="py-2 px-4">{product.title}</td>
-                <td className="py-2 px-4">${product.price}</td>
+                <td className="py-2 px-4">{product.price}</td>
                 <td className="py-2 px-4">{product.stock}</td>
                 <td className="py-2 px-4">{product.category}</td>
                 <td className="py-2 px-4 text-center">

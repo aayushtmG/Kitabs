@@ -22,7 +22,7 @@ function ProductCard({product}) {
                         <h2 className=' group-hover:text-secondary font-bold text-text-primary
                         xl:text-xl '>{product.title}</h2>
                           <p className="2xl:text-xl font-semibold text-[#1a385e]">
-                            ${product.price}
+                            Rs.{product.price}
                           </p>
                   </div>
       </div>
