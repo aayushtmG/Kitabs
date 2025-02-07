@@ -37,7 +37,7 @@ export const getAllProducts = catchAsync(async (req,res)=>{
 
 export const getProduct = catchAsync(async (req,res)=>{
   const productId = req.params.id
-  const product = await Product.findById(productId,'-_id')
+  const product = await Product.findById(productId)
   res.status(200).json({
    message:'success',
    product

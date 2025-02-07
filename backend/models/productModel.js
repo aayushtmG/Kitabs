@@ -10,6 +10,19 @@ const productSchema = new mongoose.Schema({
     type:[String],
     required:[true,"Please provide image"]
   },
+  description:{
+    type:String,
+    required:[true,"Please provide description"], 
+    default: "No description provided",
+  },
+  stock:{
+    type:Number
+  },
+  author:{
+    type:String,
+    required:[true,'Plase provide author name'],
+    default: "No Author",
+  },
   price:{
     type:String,
     required:[true,"Please provide price"]

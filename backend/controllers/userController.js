@@ -20,7 +20,6 @@ export const updateUser = catchAsync(async (req, res, next) => {
   }
 
   const id = req.params.id;
-
   // Find and update the user
   const user = await User.findByIdAndUpdate(id, req.body, {
     new: true, // Return the updated document
