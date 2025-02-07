@@ -11,7 +11,8 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
   const [formData, setFormData] = useState(action == 'add' ? { 
     title:  'New Book',
     category: 'fiction',
-    stock:2,
+    description: '',
+    stock:0,
     price:500,
     images:[]
   }: { 
@@ -19,6 +20,7 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
     category:  product.category,
     stock:product.stock,
     price:product.price,
+    description:product.description,
     images: product.images
   });
 
@@ -29,12 +31,14 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
     const submittingData = new FormData();
     submittingData.append('title',formData.title)
     submittingData.append('category', formData.category)
+    submittingData.append('description',formData.description)
     submittingData.append('stock', formData.stock)
     submittingData.append('price', formData.price)
     Array.from(formData.images).forEach(img => {
       submittingData.append('images',img);
     })
     const response = await fetch(`https://kitabs.onrender.com/api/products/add-product`,{
+    // const response = await fetch(`http://localhost:5000/api/products/add-product`,{
       method:'POST',
       body:submittingData 
     })
@@ -55,6 +59,7 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
         category: formData.category,
         stock: formData.stock,
         price: formData.price,
+        description: formData.description
       }),
     }) 
     fetchProducts()
@@ -96,7 +101,7 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
 
       <div className="space-y-2 flex-1">
         <label className="block text-sm font-medium text-gray-700">
-          Images
+          Image
         </label>
         <input
         name='images'
@@ -105,6 +110,18 @@ export default function ProductForm({action='add',product,fetchProducts,closeMod
         className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
         multiple
         />
+      </div>
+
+      <div className="space-y-2 flex-1">
+        <label className="block text-sm font-medium text-gray-700">
+          Description
+        </label>
+        <textarea
+        name='description'
+        onChange={handleChange}
+        value={formData.description}
+        className="whitespace-pre-wrap w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+        ></textarea>
       </div>
       <div className='flex justify-between gap-4'>
       <Input

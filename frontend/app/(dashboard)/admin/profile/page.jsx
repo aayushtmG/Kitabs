@@ -13,7 +13,7 @@ import { NotifierContext } from '@/context/NotifierContext';
 export default function ProfileForm() {
   const {notifierMessage,notifierVisible,notify} = useContext(NotifierContext)
   const {user} = useSelector(state => state.user);
-  const userData = user.user; 
+  const userData = user; 
   const [formData, setFormData] = useState({
     fullName: userData.fullName,
     email: userData.email,
@@ -28,34 +28,31 @@ export default function ProfileForm() {
     router.push('/login'); // Redirect to the login page
   };
 
-  // const handleSubmit = async (e) =>  {
-  //   e.preventDefault();
-  //   // Handle form submission
-  //   const response = await fetch(`https://kitabs.onrender.com/api/users/${userData._id}`,{
-  //     method:'PATCH',  headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //     body:JSON.stringify({
-  //      fullName:formData.fullName,
-  //      email: formData.email,
-  //      username: formData.email 
-  //     }) 
-  //   })
-  //   const result = await response.json()
-  //   if(result.status == 'success'){
-  //   const updatedUser = result.updatedUser;
-  //   console.log(updatedUser);
-  //   // Update Redux store with the new user data
-  //   dispatch(setUser(updatedUser));
-  //   notify('Updated Changes');
-  //   }else{
-  //     notify(result.message)
-  //   }
-  // };
-
   const handleSubmit = async (e) =>  {
-    
-  }
+    e.preventDefault();
+    // Handle form submission
+    const response = await fetch(`https://kitabs.onrender.com/api/users/${userData._id}`,{
+      method:'post',  
+      headers: {
+      'Content-Type': 'application/json',
+    },
+      body:JSON.stringify({
+       fullName:formData.fullName,
+       email: formData.email,
+       username: formData.username 
+      }) 
+    })
+    const result = await response.json()
+    if(result.status == 'success'){
+      const updatedUser = result.updatedUser      
+    // Update Redux store with the new user data
+    dispatch(setUser(updatedUser));
+    notify('Updated Changes');
+    }else{
+      notify(result.message)
+    }
+  };
+
 
   const handleChange = (e) => {
     setFormData(prev => ({
@@ -73,8 +70,7 @@ export default function ProfileForm() {
         alt="John Doe"
       />
       <div className='text-center'>
-        <h2 className="text-2xl font-bold text-gray-900">John Doe</h2>
-        <p className="text-gray-500">Senior Administrator</p>
+        <h2 className="text-2xl font-bold text-gray-900">{user.fullName}</h2>
       </div>
       </div>
     <form onSubmit={handleSubmit} className="space-y-6 ">

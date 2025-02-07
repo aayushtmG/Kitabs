@@ -37,18 +37,38 @@ export default function Page() {
     setSort(newSort);
   }
 
-  //get current posts
-  function pagination(products){
-    const indexOfLastProduct= currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstProduct,indexOfLastProduct)
-    setProducts(currentProducts)
+
+  // //get current posts
+  // function pagination(products){
+  //   const indexOfLastProduct= currentPage * productsPerPage;
+  //   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  //   const currentProducts = products.slice(indexOfFirstProduct,indexOfLastProduct)
+  //   setProducts(currentProducts)
+  // }
+
+function pagination(products) {
+  const sortedProducts = [...products]; // Create a shallow copy to avoid mutating the original array
+
+  if (sort === "low to high") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (sort === "high to low") {
+    sortedProducts.sort((a, b) => b.price - a.price);
   }
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  setProducts(currentProducts);
+}
 
   //change Page
   const paginate = pageNumber => setCurrentPage(pageNumber); 
 
   const fetchProducts = async()=>{
+    const queryCategory= category.toLocaleLowerCase();
+    // const response = await fetch(`http://localhost:5000/api/products?category=${queryCategory}`) 
+
     const response = await fetch(`https://kitabs.onrender.com/api/products`) 
     const body = await response.json()
     pagination(body.products)
@@ -57,7 +77,7 @@ export default function Page() {
 
   useEffect(()=>{
     fetchProducts();
-  },[])
+  },[category,sort])
 
   return <MainLayout>
         <div className="pt-24 w-4/5 mx-auto">

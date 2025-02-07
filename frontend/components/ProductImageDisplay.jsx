@@ -6,14 +6,14 @@ import Image from 'next/image'
 function ProductImageDisplay({images,title}) {
   const [mainImage,setMainImage] = useState(images[0]);
   return (
-    <div className=" w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded-md shadow-lg p-4 ">
-      <div className="relative h-96 grid place-items-center border-b border-">
+    <div className=" w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded-md shadow-lg p-4 h-full max-h-[800px]">
+      <div className="relative  grid place-items-center  w-full h-ful">
         <Image
 src={`https://kitabs.onrender.com${mainImage}`}
           alt={title}
           width={500}
           height={0}
-          className="w-1/2 transform duration-500 ease-in-out hover:scale-105 "
+          className=" transform duration-500 ease-in-out hover:scale-105 w-[250px] lg:w-[350px] 2xl:w-[400px]"
         />
       </div>
       <div className="relative flex">

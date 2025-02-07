@@ -7,11 +7,12 @@ const nextConfig = {
         hostname: 'kitabs.onrender.com', // Just the hostname, without "https://"
         pathname: '/uploads/products/**',
       },
-      {
-        protocol: 'http',
-        hostname: 'localhost', // Add localhost for development purposes
-        pathname: '/uploads/products/**',
-      },
+      // {
+      //   protocol: 'http',
+      //   port:'5000',
+      //   hostname: 'localhost', // Add localhost for development purposes
+      //   pathname: '/uploads/products/**',
+      // },
     ],
   },
 };

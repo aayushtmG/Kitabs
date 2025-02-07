@@ -10,16 +10,28 @@ import {TailSpin} from 'react-loader-spinner'
 
 export default function Home() {
   const [products,setProducts] = useState([]) 
+  const [featuredProducts,setFeaturedProducts] = useState([]) 
   const [isLoading,setIsLoading] = useState(true);
   const fetchProducts = async()=>{
-    const response = await fetch(`https://kitabs.onrender.com/api/products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/new-products`) 
+    // const response = await fetch(`http://localhost:5000/api/products/new-products`) 
     const body = await response.json()
     setProducts(body.products); 
     setIsLoading(false)
   }
+  const fetchFeaturedProducts= async()=>{
+    // const response = await fetch(`http://localhost:5000/api/products/featured-products`) 
+    const response = await fetch(`https://kitabs.onrender.com/api/products-products`) 
+    const body = await response.json()
+    console.log(body)
+    setFeaturedProducts(body.products); 
+    setIsLoading(false)
+
+  }
 
   useEffect(()=>{
     fetchProducts();
+    fetchFeaturedProducts();
   },[])
 
 
@@ -105,7 +117,7 @@ export default function Home() {
   /> </div>: 
           <div className='px-10 grid place-items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full xl:w-3/4 my-10 '>
             {
-              products.map((product)=>
+              featuredProducts.map((product)=>
                 <ProductCard
                   key={product._id}
                   product={product}

@@ -10,18 +10,18 @@ import { TailSpin } from 'react-loader-spinner';
 function ProductDetailsClient({ productId }) {
   const [product,setProduct] = useState('');
   const [isLoading,setIsLoading] = useState(true)
+  const [category,setCategory] = useState('');
   //todo
   const fetchProduct = async()=>{
     const response = await fetch(`https://kitabs.onrender.com/api/products/${productId}`)
     const body = await response.json();
       setProduct(body.product);
       setIsLoading(false);
+      setCategory(body.product.category);
   }
-  //fetch product with id
   useEffect(()=>{
     fetchProduct();
   },[])
-  //setCategory after fetching data
   return (
     <section>
       <div className=" py-10">
@@ -34,7 +34,7 @@ function ProductDetailsClient({ productId }) {
             Back
           </Link>
             {
-              isLoading ? <div className="flex justify-center w-full "> <TailSpin
+              isLoading ? <div className="flex justify-center w-full min-h-[100vh]"> <TailSpin
   visible={true}
   height="80"
   width="80"
@@ -59,7 +59,7 @@ function ProductDetailsClient({ productId }) {
   wrapperStyle={{}}
   wrapperClass=""
   /> </div>: 
-      <SuggestionBlock />
+      <SuggestionBlock  category={category}/>
       }
     </section>
   );

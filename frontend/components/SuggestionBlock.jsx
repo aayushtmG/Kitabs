@@ -6,7 +6,7 @@ import { faCircleChevronRight,faCircleChevronLeft } from '@fortawesome/free-soli
 
 //todo 
 //remove the product  and fetch products according to the category
-function SuggestionBlock() {
+function SuggestionBlock({category}) {
   const scrollContainerRef = useRef(null);
 
   const scrollLeft = () => {
@@ -26,7 +26,8 @@ function SuggestionBlock() {
   const [productFetched,setProductFetched] = useState(false);
 
   const fetchProducts= async()=>{
-    const response = await fetch(`https://kitabs.onrender.com/api/products`)
+    const response = await fetch(`https://kitabs.onrender.com/api/products?category=${category}`)
+    // const response = await fetch(`http://localhost:5000/api/products?category=${category}`)
     const body = await response.json();
     setSuggestedProducts(body.products);
   }

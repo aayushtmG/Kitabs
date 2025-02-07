@@ -73,3 +73,9 @@ nav > ul > li{
   font-size:1.6rem;
 }
 }
+.disabled{
+  background: rgb(179, 179, 179);  
+}
+.disabled:hover{
+  background: rgb(179, 179, 179) !important;  
+}

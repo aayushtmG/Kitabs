@@ -31,7 +31,7 @@ const Login = () => {
             const result = await response.json();
             
             if (result.success) {
-                dispatch(setUser(result)); 
+                dispatch(setUser(result.user)); 
                 console.log('Login successful!');
                 router.push('/admin');
             } else {
