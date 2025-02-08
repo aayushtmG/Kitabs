@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session'
 import userRoutes from '../routes/userRoutes.js';
 import productRoutes from '../routes/productRoutes.js';
+import authRoutes from '../routes/authRoutes.js';
 import globalErrorHandler from '../controllers/errorController.js';
 import cors from 'cors';
 import path from 'path';
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Routes
+
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 
