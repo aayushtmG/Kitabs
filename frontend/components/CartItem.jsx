@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { removeItem } from "store/slices/cartSlice"
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeItem } from "store/slices/cartSlice";
 
 function CartItem({ product, quantity, bought }) {
-  const dispatch = useDispatch()
-  const removeItemHandler= (id)=>{
+  const dispatch = useDispatch();
+  const removeItemHandler = (id) => {
     dispatch(removeItem(id));
-  }
+  };
 
   return (
     <>
@@ -25,7 +25,7 @@ function CartItem({ product, quantity, bought }) {
               <p>x {quantity || 1}</p>
               <div className="flex flex-col items-start  md:flex-row md:items-center justify-between ">
                 <p className="2xl:text-xl font-semibold text-[#1a385e]">
-                  ${product.price}
+                  Rs.{product.price}
                 </p>
                 {bought ? null : (
                   <button
@@ -41,7 +41,7 @@ function CartItem({ product, quantity, bought }) {
         </div>
       )}
     </>
-  )
+  );
 }
 
-export default CartItem
+export default CartItem;
