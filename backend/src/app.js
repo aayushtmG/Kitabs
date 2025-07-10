@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session'
 import userRoutes from '../routes/userRoutes.js';
 import productRoutes from '../routes/productRoutes.js';
 import authRoutes from '../routes/authRoutes.js';
@@ -14,24 +13,17 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 const __dirname = path.resolve(); // Fixed `__dirname` for ES modules
-
-// Middleware to serve static files
-// app.use('/uploads', express.static(path.resolve(__dirname, '../backend/public/images')));
 app.use(
   '/uploads',
   express.static(path.join(process.cwd(), 'public/images'))
 );
-
-
 // Middleware
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Routes
-
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);

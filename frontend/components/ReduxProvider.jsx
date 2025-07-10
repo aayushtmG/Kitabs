@@ -6,9 +6,7 @@ import store,{persistor} from '../store/index'
 
 export default function ReduxProvider({ children }) {
   return <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-    {children}
-            </PersistGate>
+        {children}
     </Provider>;
 }
 
@@ -17,4 +15,7 @@ export default function ReduxProvider({ children }) {
 // const handleLogout = () => {
 //     persistor.purge(); // Clears persisted state
 //     dispatch(clearUser()); // Clear Redux user state
+//
 // };
+            // <PersistGate loading={null} persistor={persistor}>
+            // </PersistGate>
