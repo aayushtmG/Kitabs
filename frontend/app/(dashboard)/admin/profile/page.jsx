@@ -1,5 +1,5 @@
 'use client'
-import { useState,useContext } from 'react';
+import { useState,useContext, useEffect } from 'react';
 import  Input  from '@/components/ui/Input';
 import  Button  from '@/components/ui/Button';
 import Avatar from '@/components/ui/Avatar' 
@@ -13,14 +13,13 @@ import { NotifierContext } from '@/context/NotifierContext';
 export default function ProfileForm() {
   const {notifierMessage,notifierVisible,notify} = useContext(NotifierContext)
   const {user} = useSelector(state => state.user);
-  const userData = user; 
   const [formData, setFormData] = useState({
-    fullName: userData.fullName,
-    email: userData.email,
-    username: userData.username,
-    phone: userData.phone || "+977 9867899294",
-    title: 'Administrator'
-  });
+            fullName: '',
+            email: '',
+            username: '',
+            phone:'',
+            title: ''
+    });
   const router = useRouter();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -31,7 +30,7 @@ export default function ProfileForm() {
   const handleSubmit = async (e) =>  {
     e.preventDefault();
     // Handle form submission
-    const response = await fetch(`https://kitabs.onrender.com/api/users/${userData._id}`,{
+    const response = await fetch(`https://kitabs.onrender.com/api/users/${user._id}`,{
       method:'post',  
       headers: {
       'Content-Type': 'application/json',
@@ -60,7 +59,18 @@ export default function ProfileForm() {
       [e.target.name]: e.target.value
     }));
   };
-
+    useEffect(()=>{
+        setFormData({
+            fullName: user.fullName || '',
+            email: user.email || '',
+            username: user.username || '',
+            phone: user.phone  || '',
+            title: 'Administrator'
+          });
+    },[user])
+    if(!user){
+return <>Not Authenticated</>
+    }
   return (
  <div className="space-y-4 mx-auto w-4/5 my-8">
     {notifierMessage && <Notifier message={notifierMessage} visible={notifierVisible}/>}
